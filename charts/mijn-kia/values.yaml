@@ -6,7 +6,7 @@ image:
   repository: ralphsmeets/mijn-kia-app
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: 1.17.0
 
 imagePullSecrets:
   - name: dockerhub
@@ -25,3 +25,12 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
+
+mijnKia:
+  loginEmail: "user@domain.com"
+  loginPassword: "myPassword"
+  preferredVehicleId: 123456
+
+aBetterRoutePlanner:
+    token: "deadbeaf-dead-beef-dead-beefdeadbeaf"
+    carModel: "brand:model:12:34:other"
