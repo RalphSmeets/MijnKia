@@ -13,7 +13,8 @@ pipeline {
                 container(name: 'kaniko', shell: '/busybox/sh') {
 
                     sh '''#!/busybox/sh
-            /kaniko/executor --context `pwd` --verbosity debug --destination ralphsmeets/mijnkia-kaniko:0.1.0
+            ls -lrt
+            /kaniko/executor --context `pwd`/docker --verbosity debug --destination ralphsmeets/mijnkia-kaniko:0.1.0
           '''
                 }
             }
