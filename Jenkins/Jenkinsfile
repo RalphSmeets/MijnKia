@@ -5,9 +5,10 @@ pipeline {
         stage('Build python project!') {
             steps {
                 container('kaniko') {
+                    echo 'Kaniko'
                     sh '''
-                    /kaniko/executer --context `pwd`/docker --destination ralphseets/mijnkia-test:0.1
-                '''
+                        /kaniko/executer --context `pwd`/docker --destination ralphseets/mijnkia-test:0.1
+                    '''
                 }
             }
         }
