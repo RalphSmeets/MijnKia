@@ -2,11 +2,13 @@ pipeline {
     agent {  label "python-kubagent" }
 
     stages {
-        stage('Build') {
-                steps {
+        stage('Build python project!') {
+            container('kaniko') {
+                stage('Build docker container') {
                     sh '''
-                    /kaniko/executer --context `pwd` --destination ralphseets/mijnkia-test:0.1
-                '''
+                        /kaniko/executer --context `pwd`/docker --destination ralphseets/mijnkia-test:0.1
+                    '''
+                }
             }
         }
         stage('Test') {

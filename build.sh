@@ -9,4 +9,4 @@ docker buildx build \
   -t ralphsmeets/mijn-kia-app:1.17.0 \
   -t ralphsmeets/mijn-kia-app:latest \
   --push \
-  .
+  docker
