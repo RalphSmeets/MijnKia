@@ -3,9 +3,11 @@ pipeline {
 
     stages {
         stage('Build') {
-            sh '''
-                /kaniko/executer --context `pwd` --destination ralphseets/mijnkia-test:0.1
-            '''
+                steps {
+                    sh '''
+                    /kaniko/executer --context `pwd` --destination ralphseets/mijnkia-test:0.1
+                '''
+            }
         }
         stage('Test') {
             steps {
