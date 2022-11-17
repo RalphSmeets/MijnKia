@@ -3,11 +3,11 @@ pipeline {
 
     stages {
         stage('Build python project!') {
-            container('kaniko') {
-                steps {
+            steps {
+                container('kaniko') {
                     sh '''
-                        /kaniko/executer --context `pwd`/docker --destination ralphseets/mijnkia-test:0.1
-                    '''
+                    /kaniko/executer --context `pwd`/docker --destination ralphseets/mijnkia-test:0.1
+                '''
                 }
             }
         }
