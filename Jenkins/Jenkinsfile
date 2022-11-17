@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build python project!') {
             steps {
-                container('kaniko') {
-                    echo 'Kaniko'
+                container(name: 'kaniko', shell: '/busybox/sh' ) {
+                    echo 'Kaniko 2nd attempt'
                     sh '''
                         /kaniko/executer --context `pwd`/docker --destination ralphsmeets/mijnkia-test:0.1
                     '''
