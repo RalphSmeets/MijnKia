@@ -14,7 +14,7 @@ pipeline {
 
                     sh '''#!/busybox/sh
             ls -lrt
-            /kaniko/executor --context `pwd` --dockerfile docker/Dockerfile --verbosity debug --destination ralphsmeets/mijn-kia-app:1.18.0
+            /kaniko/executor --context `pwd` --dockerfile docker/Dockerfile --destination ralphsmeets/mijn-kia-app:1.18.0
           '''
                 }
             }
