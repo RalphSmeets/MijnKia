@@ -1,16 +1,33 @@
-podTemplate(inheritFrom: 'python-kubagent') {
-    node(POD_LABEL) {
-        stage('Build Java Image') {
-            container('kaniko') {
-                stage('Build a Go project') {
 
-                    sh '''
-                        ls -lrt
-                        /kaniko/executor --context `pwd`/docker --destination ralphsmeets/mijnkia-kaniko:0.1
+pipeline {
+    agent {
+        kubernetes {
+            label "python-kubagent"
+        }
+    }
+    stages {
+        stage('Build with Kaniko!') {
+            environment {
+                PATH = "/busybox:/kaniko:$PATH"
+            }
+            steps {
+                container(name: 'kaniko', shell: '/busybox/sh') {
+
+                    sh '''#!/busybox/sh
+                      /kaniko/executer --context `pwd`/docker --verbosity debug --destination ralphsmeets/mijnkia-test:0.1
                     '''
                 }
             }
         }
-
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
 }
