@@ -1,16 +1,14 @@
 pipeline {
     agent {
-        kubernetes {
-            inheritFrom "python-kubagent"
-        }
+        label "python-kubagent"
     }
     stages {
         stage('Build python project!') {
             steps {
-                container('kaniko' ) {
+                container('kaniko') {
                     echo 'Kaniko'
                     sh '''
-                        ls -lrt /
+                        ls -lrt /kaniko
                         ls -lrt /home/jenkins/agent
                         /kaniko/executer --context `pwd`/docker --destination ralphsmeets/mijnkia-test:0.1
                     '''
