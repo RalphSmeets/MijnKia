@@ -1,38 +1,26 @@
-podTemplate(yaml: '''
-    apiVersion: v1
-    kind: Pod
-    spec:
-      containers:
-      - name: kaniko
-        image: gcr.io/kaniko-project/executor:debug
-        command:
-        - sleep
-        args:
-        - 9999999
-        volumeMounts:
-        - name: kaniko-secret
-          mountPath: /kaniko/.docker
-      restartPolicy: Never
-      volumes:
-      - name: kaniko-secret
-        secret:
-            secretName: dockercred
-            items:
-            - key: .dockerconfigjson
-              path: config.json
-''') {
-    node(POD_LABEL) {
-        stage('Build Java Image') {
-            container('kaniko') {
-                stage('Build a Go project') {
+pipeline {
+    agent {  label "python-kubagent" }
+
+    stages {
+        stage('Build python project!') {
+            steps {
+                container('kaniko') {
+                    echo 'Kaniko'
                     sh '''
-                        ls -lrt `pwd`
-                        /kaniko/executor --context `pwd`/docker --destination ralphsmeets/mijnkia-kaniko:0.1
+                        /kaniko/executer --context `pwd`/docker --destination ralphsmeets/mijnkia-test:0.1
                     '''
                 }
             }
         }
-
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
 }
-
