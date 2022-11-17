@@ -26,7 +26,7 @@ podTemplate(yaml: '''
             container('kaniko') {
                 stage('Build a Go project') {
                     sh '''
-                        /kaniko/executor --context `pwd`/docker --destination ralphsmeets/mijnkia-kaniko:0.1
+                        /kaniko/executor --context `pwd` --dockerfile docker --destination ralphsmeets/mijnkia-kaniko:0.1
                     '''
                 }
             }
