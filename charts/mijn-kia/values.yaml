@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: ralphsmeets/mijn-kia-app
+  repository: ralphsmeets/mijnkia-kaniko
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 1.17.0
+  tag: 0.1.0
 
 imagePullSecrets:
   - name: dockerhub
