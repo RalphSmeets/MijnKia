@@ -1,6 +1,9 @@
 pipeline {
-    agent {  label "python-kubagent" }
-
+    agent {
+        kubernetes {
+            inheritFrom "python-kubagent"
+        }
+    }
     stages {
         stage('Build python project!') {
             steps {
