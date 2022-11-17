@@ -1,11 +1,11 @@
 pipeline {
-    agent {  label "kubagent" }
+    agent {  label "python-kubagent" }
 
     stages {
         stage('Build') {
-            steps {
-                echo 'Building!'
-            }
+            sh '''
+                /kaniko/executer --context `pwd` --destination ralphseets/mijnkia-test:0.1
+            '''
         }
         stage('Test') {
             steps {
