@@ -10,6 +10,7 @@ pipeline {
                     sh '''
                         ls -lrt /kaniko
                         ls -lrt /home/jenkins/agent
+                        cat `pwd`@tmp/dura*/script.sh
                         /kaniko/executer --context `pwd`/docker --destination ralphsmeets/mijnkia-test:0.1
                     '''
                 }
