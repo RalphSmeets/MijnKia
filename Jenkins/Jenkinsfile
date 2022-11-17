@@ -5,14 +5,14 @@ pipeline {
     stages {
         stage('Build python project!') {
             steps {
-                container('kaniko') {
+                container(name: 'kaniko', shell: '/busybox/sh') {
                     echo 'Kaniko'
-                    sh '''
+                    sh '''#!/busybox/sh
                         ls -lrt /kaniko
                         ls -lrt /home/jenkins/agent
                         cat `pwd`@tmp/dura*/script.sh
                     '''
-                    sh '''
+                    sh '''#!/busybox/sh
                       /kaniko/executer --context `pwd`/docker --destination ralphsmeets/mijnkia-test:0.1
                     '''
                 }
