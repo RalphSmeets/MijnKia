@@ -1,12 +1,11 @@
-
 pipeline {
     agent {
         kubernetes {
-            label "python-kubagent"
+            inheritFrom "python-kubagent"
         }
     }
     stages {
-        stage('Build with Kaniko!') {
+        stage('Build with Kaniko') {
             environment {
                 PATH = "/busybox:/kaniko:$PATH"
             }
@@ -14,11 +13,12 @@ pipeline {
                 container(name: 'kaniko', shell: '/busybox/sh') {
 
                     sh '''#!/busybox/sh
-                      /kaniko/executer --context `pwd`/docker --verbosity debug --destination ralphsmeets/mijnkia-test:0.1
-                    '''
+            /kaniko/executor --context `pwd` --verbosity debug --destination ralphsmeets/mijnkia-kaniko:0.1.0
+          '''
                 }
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing..'
