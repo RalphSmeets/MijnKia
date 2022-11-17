@@ -14,7 +14,7 @@ pipeline {
 
                     sh '''#!/busybox/sh
             ls -lrt
-            /kaniko/executor --context `pwd`/docker --verbosity debug --destination ralphsmeets/mijnkia-kaniko:0.1.0
+            /kaniko/executor --context `pwd` --dockerfile docker/Dockerfile --verbosity debug --destination ralphsmeets/mijnkia-kaniko:0.1.0
           '''
                 }
             }
