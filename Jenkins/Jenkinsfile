@@ -5,7 +5,7 @@ pipeline {
         }
     }
     stages {
-        stage('Build container image with Kaniko and push to docker hub') {
+        stage('Build container image with Kaniko and push to Docker hub') {
             environment {
                 PATH = "/busybox:/kaniko:$PATH"
             }
